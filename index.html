@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND Digital Printing & Advertising Bajo | Solusi Cetak & Promosi UMKM</title>
+    <meta name="description" content="Partner cetak dan promosi untuk UMKM dan bisnis lokal di Bajo. Kami menyediakan solusi spanduk, stiker, kartu nama, dan lainnya dengan proses cepat dan ramah.">
+    <meta name="keywords" content="digital printing bajo, percetakan bajo, printing & advertising bajo, cetak spanduk bajo, stiker produk bajo">
+
+    <!-- Google Fonts (Placeholder) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "DND Digital Printing & Advertising Bajo",
+      "description": "Solusi Cetak & Promosi untuk Bisnis Lokal di Bajo.",
+      "telephone": "[NOMOR_WHATSAPP_PLACEHOLDER]",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[ALAMAT_LENGKAP_PLACEHOLDER]",
+        "addressLocality": "Labuan Bajo",
+        "addressRegion": "Nusa Tenggara Timur",
+        "postalCode": "[KODE_POS_PLACEHOLDER]",
+        "addressCountry": "ID"
+      },
+      "url": "[WEBSITE_URL_PLACEHOLDER]",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "[LATITUDE_PLACEHOLDER]",
+        "longitude": "[LONGITUDE_PLACEHOLDER]"
+      },
+      "openingHours": "Mo,Tu,We,Th,Fr,Sa 09:00-17:00",
+      "priceRange": "$$"
+    }
+    </script>
+    <style>
+        :root {
+            --primary-color: #D32F2F; /* Aksen merah yang kuat, mudah diganti */
+            --dark-color: #1A1A1A;
+            --light-color: #FFFFFF;
+            --gray-color: #F4F4F4;
+            --text-color: #333333;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        /* Reset & Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        /* A. Sticky Header */
+        #header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #header .logo a {
+            display: flex;
+            flex-direction: column;
+            color: var(--dark-color);
+        }
+
+        #header .logo .alias {
+            font-size: 0.7rem;
+            color: #777;
+        }
+
+        #header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        #header nav ul li {
+            margin-left: 20px;
+        }
+
+        #header nav ul li a {
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        #header nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #B71C1C; /* Darker shade of primary color */
+        }
+
+        /* B. Hero Section */
+        #hero {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--gray-color);
+        }
+
+        #hero .subheadline {
+            max-width: 600px;
+            margin: 1rem auto;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        #hero .hero-buttons {
+            margin: 2rem 0;
+        }
+
+        #hero .cta-button {
+            margin: 0 10px;
+        }
+
+        #hero .cta-button.secondary {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        #hero .cta-button.secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+
+        #hero .value-props {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        #hero .prop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            #header nav {
+                display: none; /* Simple hiding for mobile, can be replaced with hamburger menu later */
+            }
+
+            #hero .value-props {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* C. Social Proof Mini Bar */
+        #social-proof {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 0.75rem 0;
+            text-align: center;
+        }
+
+        #social-proof .container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* D. Layanan Section */
+        #layanan {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 3rem;
+        }
+
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .layanan-card {
+            background-color: var(--gray-color);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            border: 2px solid transparent;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .layanan-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .alternate-bg {
+            background-color: var(--gray-color);
+        }
+
+        /* E. Portofolio Section */
+        #portofolio {
+            padding: 60px 0;
+        }
+
+        .portofolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portofolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .portofolio-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease-out;
+        }
+
+        .portofolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portofolio-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .portofolio-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .cta-mini {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* F. Cara Order Section */
+        #cara-order {
+            padding: 60px 0;
+        }
+
+        .friendly-microcopy {
+            font-style: italic;
+            color: #666;
+        }
+
+        .order-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .flow-step {
+            text-align: center;
+        }
+
+        .flow-step .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .flow-step h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* G. Kenapa DND Section */
+        #kenapa-dnd {
+            padding: 60px 0;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .pillar-item {
+            text-align: center;
+        }
+
+        .pillar-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* H. Promo Section */
+        #promo {
+            padding: 60px 0;
+        }
+
+        .promo-box {
+            border: 2px dashed var(--primary-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            background-color: #fff9f9;
+        }
+
+        .promo-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .promo-box ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-box ul li {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .promo-box small {
+            color: #777;
+        }
+
+        /* I. Testimoni Section */
+        #testimoni {
+            padding: 60px 0;
+        }
+
+        .testimoni-item {
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            text-align: center;
+        }
+
+        .testimoni-item .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimoni-item .author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .review-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            background-color: var(--light-color);
+        }
+
+        .review-box h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .review-box p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* J. Lokasi Section */
+        #lokasi {
+            padding: 60px 0;
+        }
+
+        .lokasi-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .lokasi-content .info h3 {
+            margin-bottom: 1rem;
+        }
+
+        .lokasi-content .info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .lokasi-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .lokasi-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* K. FAQ Section */
+        #faq {
+            padding: 60px 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+        }
+
+        .faq-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* L. Final CTA Section */
+        #final-cta {
+            padding: 80px 0;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+        }
+
+        #final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #final-cta p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        #final-cta .cta-button.large {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+        }
+
+        /* M. Footer */
+        #footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 2rem 0;
+        }
+
+        #footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        #footer .social-links a {
+            margin-left: 15px;
+            color: var(--light-color);
+            font-weight: 600;
+        }
+
+        #footer .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* Official WhatsApp Green */
+            color: var(--light-color);
+            padding: 12px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .floating-whatsapp:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+            color: var(--light-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- A. Sticky Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">
+                    <strong>DND Digital Printing & Advertising</strong>
+                    <span class="alias">DND Digital Printing & Advertising Bajo</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#layanan">Layanan</a></li>
+                    <li><a href="#portofolio">Portofolio</a></li>
+                    <li><a href="#cara-order">Cara Order</a></li>
+                    <li><a href="#testimoni">Testimoni</a></li>
+                    <li><a href="#lokasi">Lokasi</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" class="cta-button" target="_blank">Chat WhatsApp</a>
+        </div>
+    </header>
+
+    <!-- B. Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <h1>Solusi Cetak & Promosi Bisnis Anda</h1>
+            <p class="subheadline">Dari ide sampai hasil cetak, kami bantu bisnis lokal tampil lebih profesional dan mudah dikenal.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" class="cta-button primary" target="_blank">Chat WhatsApp</a>
+                <a href="#portofolio" class="cta-button secondary">Lihat Hasil Cetak</a>
+            </div>
+            <div class="value-props">
+                <div class="prop-item">
+                    <span>✔️</span>
+                    <p>UMKM-friendly (mudah, tidak ribet)</p>
+                </div>
+                <div class="prop-item">
+                    <span>✔️</span>
+                    <p>Proses cepat & jelas</p>
+                </div>
+                <div class="prop-item">
+                    <span>✔️</span>
+                    <p>Fokus hasil yang terlihat & berdampak</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- C. Social Proof Mini Bar -->
+    <section id="social-proof">
+        <div class="container">
+            <span><small>✓ Upload hasil kerja rutin</small></span>
+            <span><small>✓ Testimoni pelanggan nyata</small></span>
+            <span><small>✓ Aktif meminta review Google Maps</small></span>
+        </div>
+    </section>
+
+    <!-- D. Section: Layanan Utama (Solusi) -->
+    <main>
+        <section id="layanan">
+            <div class="container">
+                <h2 class="section-title">Solusi Cetak untuk Semua Kebutuhan</h2>
+                <p class="section-subtitle">Dari promosi outdoor hingga branding produk, kami siap bantu.</p>
+                <div class="layanan-grid">
+                    <div class="layanan-card"><p>Spanduk & Banner untuk Promosi</p></div>
+                    <div class="layanan-card"><p>Stiker Produk & Label</p></div>
+                    <div class="layanan-card"><p>Kartu Nama & Branding Toko</p></div>
+                    <div class="layanan-card"><p>Poster / Flyer Promo</p></div>
+                    <div class="layanan-card"><p>Neon Box / Signage</p></div>
+                    <div class="layanan-card"><p>Atribut Event / Komunitas</p></div>
+                    <div class="layanan-card"><p>Branding Kendaraan</p></div>
+                    <div class="layanan-card"><p>Paket UMKM (Bundling)</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E. Section: Portofolio / Hasil Kerja Nyata -->
+        <section id="portofolio" class="alternate-bg">
+            <div class="container">
+                <h2 class="section-title">Hasil Kerja Nyata Kami</h2>
+                <p class="section-subtitle">Beberapa proyek yang telah kami selesaikan untuk klien lokal.</p>
+                <div class="portofolio-grid">
+                    <!-- Placeholder items -->
+                    <div class="portofolio-item">
+                        <img src="https://via.placeholder.com/400x300.png?text=Spanduk+Toko" alt="Contoh Spanduk">
+                        <div class="overlay"><p>Spanduk / Banner</p></div>
+                    </div>
+                    <div class="portofolio-item">
+                        <img src="https://via.placeholder.com/400x300.png?text=Stiker+Produk" alt="Contoh Stiker">
+                        <div class="overlay"><p>Stiker Produk</p></div>
+                    </div>
+                    <div class="portofolio-item">
+                        <img src="https://via.placeholder.com/400x300.png?text=Kartu+Nama" alt="Contoh Kartu Nama">
+                        <div class="overlay"><p>Kartu Nama</p></div>
+                    </div>
+                    <div class="portofolio-item">
+                        <img src="https://via.placeholder.com/400x300.png?text=Poster+Event" alt="Contoh Poster">
+                        <div class="overlay"><p>Poster / Flyer</p></div>
+                    </div>
+                     <div class="portofolio-item">
+                        <img src="https://via.placeholder.com/400x300.png?text=Signage+Cafe" alt="Contoh Signage">
+                        <div class="overlay"><p>Signage</p></div>
+                    </div>
+                     <div class="portofolio-item">
+                        <img src="https://via.placeholder.com/400x300.png?text=Branding+Mobil" alt="Contoh Branding Mobil">
+                        <div class="overlay"><p>Branding Kendaraan</p></div>
+                    </div>
+                </div>
+                <div class="cta-mini">
+                    <p>Mau dibikinin yang kayak gini? <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" target="_blank">Chat WhatsApp</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- F. Section: Cara Order (Flow simpel) -->
+        <section id="cara-order">
+            <div class="container">
+                <h2 class="section-title">Cara Order? Simpel & Cepat</h2>
+                <p class="section-subtitle friendly-microcopy">“Kak, tinggal bilang butuhnya buat apa—kami bantu rekomendasinya 😊”</p>
+                <div class="order-flow">
+                    <div class="flow-step">
+                        <div class="icon">💬</div>
+                        <h3>1. Chat Kebutuhan</h3>
+                        <p>Ceritakan apa yang Anda butuhkan, untuk acara atau promosi apa.</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="icon">📏</div>
+                        <h3>2. Tentukan Ukuran & Jumlah</h3>
+                        <p>Kami akan bantu merekomendasikan spesifikasi terbaik.</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="icon">🗓️</div>
+                        <h3>3. Konfirmasi Deadline</h3>
+                        <p>Sepakati waktu pengerjaan agar sesuai jadwal Anda.</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="icon">🚚</div>
+                        <h3>4. Produksi & Ambil</h3>
+                        <p>Proses cetak dimulai, dan kami akan kabari jika sudah selesai.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- G. Section: Kenapa DND? (Pillar Brand) -->
+        <section id="kenapa-dnd" class="alternate-bg">
+            <div class="container">
+                <h2 class="section-title">Kenapa Memilih DND?</h2>
+                <p class="section-subtitle">Kami bukan sekadar tukang cetak, kami partner bertumbuh Anda.</p>
+                <div class="pillar-grid">
+                    <div class="pillar-item">
+                        <div class="icon">🤝</div>
+                        <h3>UMKM Partner</h3>
+                        <p>Kami mengerti kebutuhan dan budget usaha kecil. Proses dibuat simpel dan tanpa ribet.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <div class="icon">⚡</div>
+                        <h3>Cepat & Mudah</h3>
+                        <p>Dari chat pertama hingga barang jadi, kami jaga alur kerja tetap jelas dan efisien.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <div class="icon">🎯</div>
+                        <h3>Hasil Nyata</h3>
+                        <p>Fokus kami pada hasil cetak yang tajam, awet, dan memberikan dampak visual bagi bisnis Anda.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <div class="icon">📍</div>
+                        <h3>Lokal & Dekat</h3>
+                        <p>Sebagai bisnis lokal di Bajo, kami mudah dihubungi dan diajak diskusi langsung.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- H. Section: Promo (tanpa perang harga) -->
+        <section id="promo">
+            <div class="container">
+                <div class="promo-box">
+                    <h2>Promo Minggu Ini</h2>
+                    <ul>
+                        <li>Gratis desain untuk pesanan spanduk di atas 5 meter*</li>
+                        <li>Bonus 100 stiker kromo untuk setiap pembuatan kartu nama*</li>
+                        <li>Paket branding UMKM (kartu nama + stiker + spanduk) harga spesial*</li>
+                    </ul>
+                    <small>*Syarat & Ketentuan berlaku. Hubungi kami untuk info lengkap.</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- I. Section: Testimoni + Ajakan Review Google Maps -->
+        <section id="testimoni" class="alternate-bg">
+            <div class="container">
+                <h2 class="section-title">Apa Kata Mereka?</h2>
+                <div class="testimoni-slider">
+                    <!-- Placeholder Testimonial -->
+                    <div class="testimoni-item">
+                        <p class="quote">"Pelayanannya ramah banget, prosesnya juga cepat. Desain spanduk saya dibantu sampai pas sesuai keinginan. Hasilnya mantap, warnanya tajam!"</p>
+                        <p class="author">- Pemilik Warung Makan Sejahtera</p>
+                    </div>
+                </div>
+                <div class="review-box">
+                    <h3>Bantu Kami Berkembang</h3>
+                    <p>Review Anda sangat berarti dan membantu UMKM lokal lain menemukan DND ⭐</p>
+                    <a href="[LINK_GOOGLE_MAPS_REVIEW_PLACEHOLDER]" class="cta-button secondary" target="_blank">Kasih Review di Google Maps</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- J. Section: Lokasi & Jam Operasional -->
+        <section id="lokasi">
+            <div class="container">
+                <h2 class="section-title">Temukan Kami di Sini</h2>
+                <div class="lokasi-content">
+                    <div class="map-placeholder">
+                         <!-- Placeholder for Google Maps embed -->
+                         <img src="https://via.placeholder.com/600x400.png?text=Peta+Lokasi+DND" alt="Peta Lokasi DND Digital Printing" style="width:100%; height:auto; border-radius: 8px;">
+                    </div>
+                    <div class="info">
+                        <h3>DND Digital Printing & Advertising Bajo</h3>
+                        <p><strong>Alamat:</strong><br>[ALAMAT_LENGKAP_PLACEHOLDER]</p>
+                        <p><strong>Jam Buka:</strong><br>Senin - Sabtu: [JAM_BUKA_PLACEHOLDER]<br>Minggu: Tutup</p>
+                        <div class="lokasi-buttons">
+                            <a href="[LINK_GOOGLE_MAPS_NAVIGASI_PLACEHOLDER]" class="cta-button" target="_blank">Klik untuk Navigasi</a>
+                            <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" class="cta-button secondary" target="_blank">Chat Dulu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- K. FAQ Section -->
+        <section id="faq" class="alternate-bg">
+            <div class="container">
+                <h2 class="section-title">Sering Ditanyakan (FAQ)</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>Bisa bantu rekomendasi bahan/ukuran?</h4>
+                        <p>Tentu saja! Justru itu kelebihan kami. Sampaikan saja kebutuhannya untuk apa, nanti kami bantu pilihkan yang paling pas dan efektif.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Minimal order berapa?</h4>
+                        <p>Tergantung produknya. Untuk stiker ada minimal order, tapi untuk spanduk, banner, atau poster bisa cetak satuan. Fleksibel kok, chat saja dulu.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Berapa lama proses pengerjaannya?</h4>
+                        <p>Proses cetak biasanya 1-2 hari kerja setelah desain final dan pembayaran dikonfirmasi. Jika butuh lebih cepat, bisa didiskusikan.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Bisa desain dari nol?</h4>
+                        <p>Bisa banget. Kami menyediakan jasa desain dengan biaya terjangkau. Kalau hanya teks dan layout simpel, sering kami berikan gratis*.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Bisa kirim/antar?</h4>
+                        <p>Untuk saat ini kami melayani pickup di lokasi. Namun untuk jumlah pesanan tertentu, pengantaran di sekitar Labuan Bajo bisa diatur.</p>
+                    </div>
+                     <div class="faq-item">
+                        <h4>Cara pembayaran gimana?</h4>
+                        <p>Kami menerima pembayaran via transfer bank atau tunai di lokasi. DP biasanya 50% untuk memulai proses produksi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- L. Final CTA Section -->
+        <section id="final-cta">
+            <div class="container">
+                <h2>Siap bikin brand kamu makin kelihatan?</h2>
+                <p>Balas cepat, dibantu sampai jelas.</p>
+                <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" class="cta-button primary large" target="_blank">Chat WhatsApp Sekarang</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- M. Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p><strong>DND Digital Printing & Advertising Bajo</strong></p>
+                <div class="social-links">
+                    <a href="[INSTAGRAM_LINK_PLACEHOLDER]" target="_blank">Instagram</a>
+                    <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" target="_blank">WhatsApp</a>
+                    <a href="[LINK_GOOGLE_MAPS_PLACEHOLDER]" target="_blank">Google Maps</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 DND Digital Printing & Advertising. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/[NOMOR_WHATSAPP_PLACEHOLDER]" class="floating-whatsapp" target="_blank">Chat di WhatsApp</a>
+</body>
+</html>
