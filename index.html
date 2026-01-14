@@ -42,6 +42,7 @@
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.7;
+            font-size: 16px;
         }
 
         img {
@@ -110,6 +111,7 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow);
+            background-color: #2f2b2c;
         }
 
         .btn-ghost {
@@ -151,46 +153,14 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: var(--heading);
-        }
-
-        .logo-mark {
             display: inline-flex;
             align-items: center;
-            gap: 2px;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
         }
 
-        .logo-mark span {
-            display: inline-block;
-            padding: 6px 8px;
-            border: 2px solid var(--dark);
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .logo-mark span::after {
-            content: "";
-            position: absolute;
-            right: -6px;
-            top: 50%;
-            width: 10px;
-            height: 2px;
-            background-color: var(--dark);
-        }
-
-        .logo-mark span:last-child::after {
-            display: none;
-        }
-
-        .logo-text {
-            font-size: 0.95rem;
-            color: var(--gray);
-            max-width: 180px;
+        .logo-img {
+            width: 110px;
+            height: auto;
+            display: block;
         }
 
         .nav-links {
@@ -233,9 +203,24 @@
             background-position: center;
         }
 
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0.18;
+            mix-blend-mode: soft-light;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
         .hero-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 36px;
             align-items: center;
         }
@@ -608,6 +593,22 @@
                 gap: 24px;
             }
         }
+
+        @media (min-width: 768px) {
+            .logo-img {
+                width: 140px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+
+            .logo-img {
+                width: 170px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -615,23 +616,19 @@
     <header class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <div class="logo-mark" aria-label="Logo DND">
-                    <span>D</span><span>N</span><span>D</span>
-                </div>
-                <div class="logo-text">Digital Printing & Advertising</div>
+                <img class="logo-img" src="dnd logo-01.png" alt="DND Digital Printing & Advertising logo">
             </a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#layanan">Layanan</a></li>
                     <li><a href="#portofolio">Portofolio</a></li>
                     <li><a href="#proses">Proses</a></li>
-                    <li><a href="#testimoni">Testimoni</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#kontak">Kontak</a></li>
                 </ul>
             </nav>
             <div class="nav-cta">
-                <a class="btn btn-primary" href="https://wa.me/628000000000" target="_blank" rel="noopener">Minta Penawaran</a>
+                <a class="btn btn-primary" href="https://wa.me/628000000000" target="_blank" rel="noopener">Chat WhatsApp</a>
             </div>
             <button class="mobile-toggle" type="button">Menu</button>
         </div>
@@ -641,7 +638,6 @@
     <section class="hero" id="hero">
         <div class="container hero-grid">
             <div class="hero-content">
-                <span class="badge">DND BRAND GUIDELINE 2026</span>
                 <h1>Cetak Cepat. Hasil Presisi. Branding Naik Kelas.</h1>
                 <p>DND Digital Printing & Advertising adalah partner produksi cetak dan advertising yang fokus pada kualitas, ketelitian, dan ketepatan waktu untuk bisnis yang ingin tampil rapi dan profesional.</p>
                 <div class="hero-actions">
