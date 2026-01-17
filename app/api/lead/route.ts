@@ -18,8 +18,7 @@ const isRateLimited = (ip: string) => {
 };
 
 export async function POST(request: NextRequest) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 
   if (isRateLimited(ip)) {
     return NextResponse.json({ message: "Terlalu banyak permintaan." }, { status: 429 });
@@ -36,10 +35,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Data belum lengkap." }, { status: 400 });
   }
 
+  const sheetsId = process.env.GOOGLE_SHEETS_ID;
   const serviceEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
-  if (!process.env.GOOGLE_SHEETS_ID || !serviceEmail || !privateKey) {
+  if (!sheetsId || !serviceEmail || !privateKey) {
     return NextResponse.json({ message: "Konfigurasi server belum lengkap." }, { status: 500 });
   }
 
@@ -50,27 +50,31 @@ export async function POST(request: NextRequest) {
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
-    // (optional) memastikan token bisa didapat
-    await auth.authorize();
-
     const sheets = google.sheets({ version: "v4", auth });
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEETS_ID,
-      range: "Leads!A:I", // pastikan sheet tab bernama "Leads"
+      spreadsheetId: sheetsId,
+      range: "Leads!A1",
       valueInputOption: "USER_ENTERED",
-      insertDataOption: "INSERT_ROWS",
       requestBody: {
         values: [
-          [new Date().toISOString(), name, whatsapp, product, qty, deadline, notes, fileLink, ip],
+          [
+            new Date().toISOString(),
+            name,
+            whatsapp,
+            product,
+            qty,
+            deadline,
+            notes,
+            fileLink,
+            ip,
+          ],
         ],
       },
     });
 
     return NextResponse.json({ message: "Sukses" }, { status: 200 });
   } catch (error) {
-    console.error("Sheets append error:", error);
     return NextResponse.json({ message: "Gagal menyimpan data." }, { status: 500 });
   }
 }
-

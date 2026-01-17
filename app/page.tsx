@@ -1,12 +1,12 @@
-import MobileStickyCTA from "./components/MobileStickyCTA.tsx";
-import QuoteForm from "./components/QuoteForm.tsx";
+import MobileStickyCTA from "../components/MobileStickyCTA";
+import QuoteForm from "../components/QuoteForm";
 
 export default function Home() {
   return (
     <main className="bg-white">
       <header className="sticky top-0 z-40 border-b border-[#231F20]/10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-          <div className="text-lg font-semibold tracking-wide">DND Digital Printing</div>
+          <div className="text-lg font-semibold tracking-wide">DND Digital Printing & Advertising</div>
           <nav className="hidden items-center gap-6 text-sm text-[#58595B] md:flex">
             <a href="#layanan" className="hover:text-[#231F20]">Layanan</a>
             <a href="#portofolio" className="hover:text-[#231F20]">Portofolio</a>
@@ -28,7 +28,7 @@ export default function Home() {
       <section className="border-b border-[#231F20]/10 bg-[#F4F4F4]">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.2fr_0.8fr] md:items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#58595B]">DND Printing</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#58595B]">DND Digital Printing & Advertising</p>
             <h1 className="mt-4 text-4xl font-semibold text-[#231F20] md:text-5xl">
               Cetak Cepat. Hasil Presisi. Branding Naik Kelas.
             </h1>
@@ -86,10 +86,19 @@ export default function Home() {
           <p className="mt-3 text-[#58595B]">Pertanyaan umum seputar proses cetak dan deadline.</p>
         </div>
       </section>
-       <section id="kontak" className="mx-auto max-w-6xl px-4 py-16">
-        <QuoteForm />
-      </section>
 
+      <QuoteForm />
+      <footer className="border-t border-[#231F20]/10 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-5 py-10 text-sm text-[#58595B]">
+          <div className="space-y-2">
+            <p className="text-base font-semibold text-[#231F20]">Edy Siswanto · Operations Manager</p>
+            <p>WhatsApp: 087-862-691-363</p>
+            <p>Email: edysiswanto61@gmail.com</p>
+            <p>Alamat: Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT</p>
+            <p>Website: dndadvertising.com</p>
+          </div>
+        </div>
+      </footer>
       <MobileStickyCTA />
     </main>
   );

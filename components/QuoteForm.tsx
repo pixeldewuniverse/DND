@@ -2,244 +2,242 @@
 
 import { useMemo, useState } from "react";
 
-const WHATSAPP_NUMBER = "62812XXXXXXX";
+const BUSINESS_NUMBER = "6287862691363";
 
-type FormState = {
+const buildWhatsAppLink = (message: string) => {
+  const encoded = encodeURIComponent(message);
+  return `https://wa.me/${BUSINESS_NUMBER}?text=${encoded}`;
+};
+
+const normalizeWhatsApp = (value: string) => {
+  const trimmed = value.replace(/\s+/g, "");
+  const digits = trimmed.replace(/[^0-9+]/g, "");
+  if (digits.startsWith("+")) {
+    return digits.slice(1);
+  }
+  if (digits.startsWith("0")) {
+    return `62${digits.slice(1)}`;
+  }
+  return digits;
+};
+
+const isValidWhatsApp = (value: string) => {
+  const normalized = normalizeWhatsApp(value);
+  return /^62\d{8,14}$/.test(normalized);
+};
+
+export type QuoteFormData = {
   name: string;
   whatsapp: string;
   product: string;
   qty: string;
   deadline: string;
-  notes: string;
-  fileLink: string;
+  notes?: string;
+  fileLink?: string;
 };
-
-const initialState: FormState = {
-  name: "",
-  whatsapp: "",
-  product: "Sticker",
-  qty: "",
-  deadline: "",
-  notes: "",
-  fileLink: "",
-};
-
-function normalizeWhatsApp(input: string) {
-  // Keep digits and plus, then normalize common Indonesian formats
-  let v = input.trim().replace(/[^\d+]/g, "");
-  if (v.startsWith("+")) v = v.slice(1);
-  if (v.startsWith("08")) v = "62" + v.slice(1);
-  if (v.startsWith("8")) v = "62" + v;
-  return v;
-}
-
-function buildWaLink(text: string) {
-  const url = new URL(`https://wa.me/${WHATSAPP_NUMBER}`);
-  url.searchParams.set("text", text);
-  return url.toString();
-}
 
 export default function QuoteForm() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState(false);
+  const [formData, setFormData] = useState<QuoteFormData>({
+    name: "",
+    whatsapp: "",
+    product: "",
+    qty: "",
+    deadline: "",
+    notes: "",
+    fileLink: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [error, setError] = useState<string | null>(null);
 
-  const waMessage = useMemo(() => {
-    const w = normalizeWhatsApp(form.whatsapp);
-    return `Halo DND, saya ${form.name}.
-Produk: ${form.product}
-Qty: ${form.qty}
-Deadline: ${form.deadline}
-Link desain: ${form.fileLink || "-"}
-Catatan: ${form.notes || "-"}
+  const waTemplate = useMemo(() => {
+    const message = `Halo DND, saya ${formData.name}. Saya mau cetak ${formData.product}, qty ${formData.qty}, deadline ${formData.deadline}. Catatan: ${formData.notes || "-"}. Link desain: ${formData.fileLink || "-"}.`;
+    return buildWhatsAppLink(message);
+  }, [formData]);
 
-No WA saya: ${w || form.whatsapp}
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-Mohon estimasi harga & rekomendasi material terbaik ya. Terima kasih 🙏`;
-  }, [form]);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError(null);
 
-  const onChange =
-    (key: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      setForm((prev) => ({ ...prev, [key]: e.target.value }));
-    };
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setSuccess(false);
-
-    const w = normalizeWhatsApp(form.whatsapp);
-    if (!form.name || !form.product || !form.qty || !form.deadline || !form.whatsapp) {
-      setError("Lengkapi data wajib dulu ya.");
-      return;
-    }
-    if (!/^\d+$/.test(form.qty)) {
-      setError("QTY harus angka.");
-      return;
-    }
-    if (!/^62\d{8,15}$/.test(w)) {
-      setError("Nomor WhatsApp tidak valid. Gunakan format 08xxx atau +62xxx.");
+    if (!isValidWhatsApp(formData.whatsapp)) {
+      setError("Nomor WhatsApp tidak valid. Gunakan format 08xx atau +62xxx.");
       return;
     }
 
-    setLoading(true);
+    if (!/^\d+$/.test(formData.qty)) {
+      setError("Jumlah/QTY harus berupa angka.");
+      return;
+    }
+
+    setStatus("loading");
+
     try {
-      const res = await fetch("/api/lead", {
+      const response = await fetch("/api/lead", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          ...form,
-          whatsapp: w,
+          ...formData,
+          whatsapp: normalizeWhatsApp(formData.whatsapp),
         }),
       });
 
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        setError(data?.message || "Gagal mengirim data.");
-        return;
+      if (!response.ok) {
+        throw new Error("Gagal mengirim data. Silakan coba lagi.");
       }
 
-      setSuccess(true);
-      // optional: reset form
-      // setForm(initialState);
-    } catch {
-      setError("Terjadi error jaringan. Coba lagi ya.");
-    } finally {
-      setLoading(false);
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Terjadi kesalahan.");
     }
   };
 
   return (
-    <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
-      <h2 className="text-2xl font-bold text-[#231F20]">Minta Penawaran</h2>
-      <p className="mt-2 text-sm text-[#58595B]">
-        Isi detail singkat. Tim DND akan cek kebutuhan & rekomendasi material terbaik.
-      </p>
-
-      <form onSubmit={onSubmit} className="mt-6 grid gap-4">
-        <div className="grid gap-2 md:grid-cols-2">
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Nama *</label>
-            <input
-              value={form.name}
-              onChange={onChange("name")}
-              className="rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-              placeholder="Nama kamu"
-              required
-            />
-          </div>
-
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">No WhatsApp *</label>
-            <input
-              value={form.whatsapp}
-              onChange={onChange("whatsapp")}
-              className="rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-              placeholder="08xxxx / +62xxxx"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="grid gap-2 md:grid-cols-3">
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Produk *</label>
-            <select
-              value={form.product}
-              onChange={onChange("product")}
-              className="rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-            >
-              <option>Sticker</option>
-              <option>Banner</option>
-              <option>Brosur</option>
-              <option>Spanduk</option>
-              <option>Signage</option>
-              <option>Event Backdrop</option>
-              <option>Lainnya</option>
-            </select>
-          </div>
-
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">QTY *</label>
-            <input
-              value={form.qty}
-              onChange={onChange("qty")}
-              className="rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-              placeholder="contoh: 2"
-              required
-            />
-          </div>
-
-          <div className="grid gap-2">
-            <label className="text-sm font-medium">Deadline *</label>
-            <input
-              value={form.deadline}
-              onChange={onChange("deadline")}
-              className="rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-              placeholder="contoh: 20 Jan 2026"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="grid gap-2">
-          <label className="text-sm font-medium">Link Desain (opsional)</label>
-          <input
-            value={form.fileLink}
-            onChange={onChange("fileLink")}
-            className="rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-            placeholder="Link Canva/Drive"
-          />
-        </div>
-
-        <div className="grid gap-2">
-          <label className="text-sm font-medium">Catatan (opsional)</label>
-          <textarea
-            value={form.notes}
-            onChange={onChange("notes")}
-            className="min-h-[110px] rounded-xl border border-black/10 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-black/10"
-            placeholder="Finishing doff/glossy, ukuran, dll..."
-          />
-        </div>
-
-        {error && (
-          <div className="rounded-xl border border-black/10 bg-black/5 p-3 text-sm text-[#231F20]">
-            ⚠️ {error}
-          </div>
-        )}
-
-        {success && (
-          <div className="rounded-xl border border-black/10 bg-black/5 p-3 text-sm text-[#231F20]">
-            ✅ Data berhasil terkirim.
-            <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-              <a
-                href={buildWaLink(waMessage)}
-                className="inline-flex items-center justify-center rounded-full bg-[#231F20] px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
-              >
-                Kirim Detail ke WhatsApp
-              </a>
-              <button
-                type="button"
-                onClick={() => navigator.clipboard.writeText(waMessage)}
-                className="inline-flex items-center justify-center rounded-full border border-[#231F20] px-5 py-3 text-sm font-semibold text-[#231F20] hover:bg-black/5"
-              >
-                Copy Pesan
-              </button>
+    <section id="kontak" className="bg-white py-16 md:py-20">
+      <div className="mx-auto w-full max-w-5xl px-5">
+        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#58595B]">Kontak</p>
+            <h2 className="mt-3 text-3xl font-semibold text-[#231F20] md:text-4xl">
+              Minta Penawaran Cepat
+            </h2>
+            <p className="mt-4 text-[#58595B]">
+              Beri kami detail kebutuhan Anda. Tim DND akan menghubungi dengan estimasi harga dan rekomendasi material terbaik.
+            </p>
+            <div className="mt-6 space-y-2 rounded-2xl border border-[#231F20]/10 bg-[#F4F4F4] p-5 text-sm text-[#231F20]">
+              <p><strong>Edy Siswanto</strong> · Operations Manager</p>
+              <p>WhatsApp: 087-862-691-363</p>
+              <p>Email: edysiswanto61@gmail.com</p>
+              <p>Alamat: Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT</p>
+              <p>Website: dndadvertising.com</p>
             </div>
           </div>
-        )}
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="mt-2 inline-flex items-center justify-center rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60"
-        >
-          {loading ? "Mengirim..." : "Minta Penawaran"}
-        </button>
-      </form>
-    </div>
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl border border-[#231F20]/10 bg-white p-6 shadow-sm"
+          >
+            <div className="grid gap-4">
+              <div>
+                <label className="text-sm font-medium text-[#231F20]">Nama</label>
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  placeholder="Nama lengkap"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-[#231F20]">No WhatsApp</label>
+                <input
+                  name="whatsapp"
+                  value={formData.whatsapp}
+                  onChange={handleChange}
+                  required
+                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  placeholder="08xxxxxxxxxx"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-[#231F20]">Produk</label>
+                <select
+                  name="product"
+                  value={formData.product}
+                  onChange={handleChange}
+                  required
+                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                >
+                  <option value="">Pilih produk</option>
+                  <option>Sticker</option>
+                  <option>Banner</option>
+                  <option>Brosur</option>
+                  <option>Spanduk</option>
+                  <option>Signage</option>
+                  <option>Event Backdrop</option>
+                  <option>Lainnya</option>
+                </select>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="text-sm font-medium text-[#231F20]">Jumlah / QTY</label>
+                  <input
+                    name="qty"
+                    value={formData.qty}
+                    onChange={handleChange}
+                    required
+                    className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                    placeholder="Contoh: 500"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-[#231F20]">Deadline</label>
+                  <input
+                    name="deadline"
+                    value={formData.deadline}
+                    onChange={handleChange}
+                    required
+                    className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                    placeholder="Misal: 24 Okt 2026"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-[#231F20]">Catatan (Opsional)</label>
+                <textarea
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleChange}
+                  rows={3}
+                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  placeholder="Finishing, material, atau detail lainnya"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-[#231F20]">Link Desain (Opsional)</label>
+                <input
+                  name="fileLink"
+                  value={formData.fileLink}
+                  onChange={handleChange}
+                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  placeholder="Link Google Drive/Canva"
+                />
+              </div>
+            </div>
+
+            {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+
+            {status === "success" ? (
+              <div className="mt-5 rounded-2xl border border-[#231F20]/10 bg-[#F4F4F4] p-4 text-sm text-[#231F20]">
+                <p>Terima kasih! Data sudah terkirim.</p>
+                <a
+                  href={waTemplate}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#231F20] px-4 py-3 text-sm font-semibold text-white"
+                >
+                  Kirim Detail ke WhatsApp
+                </a>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="mt-5 w-full rounded-full bg-[#231F20] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#2f2b2c] disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {status === "loading" ? "Mengirim..." : "Kirim Permintaan"}
+              </button>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
