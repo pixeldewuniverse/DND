@@ -3,7 +3,8 @@ import QuoteForm from "../components/QuoteForm";
 
 export default function Page() {
   return (
-    <main className="bg-white">
+    <main className="bg-white pb-24 md:pb-0">
+
       <header className="sticky top-0 z-40 border-b border-[#231F20]/10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
           <div className="text-lg font-semibold tracking-wide">DND Digital Printing & Advertising</div>
@@ -87,7 +88,17 @@ export default function Page() {
         </div>
       </section>
 
-      <QuoteForm />
+      <section id="kontak" className="mx-auto w-full max-w-6xl px-5 py-16">
+  <h2 className="text-2xl font-semibold text-[#231F20]">Kontak & Penawaran</h2>
+  <p className="mt-3 text-[#58595B]">
+    Isi detail kebutuhanmu, tim DND akan bantu estimasi & rekomendasi material.
+  </p>
+
+  <div className="mt-8">
+    <QuoteForm />
+  </div>
+</section>
+ 
       <footer className="border-t border-[#231F20]/10 bg-white">
         <div className="mx-auto w-full max-w-6xl px-5 py-10 text-sm text-[#58595B]">
           <div className="space-y-2">
@@ -99,7 +110,8 @@ export default function Page() {
           </div>
         </div>
       </footer>
-      <MobileStickyCTA />
+      <MobileStickyCTA/>
+
     </main>
   );
 }
