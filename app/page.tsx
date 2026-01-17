@@ -66,19 +66,93 @@ export default function Page() {
 
       <section id="layanan" className="mx-auto w-full max-w-6xl px-5 py-16">
         <h2 className="text-2xl font-semibold text-[#231F20]">Layanan Utama</h2>
-        <p className="mt-3 text-[#58595B]">Digital printing, signage, hingga kebutuhan event dalam satu partner produksi.</p>
+        <p className="mt-3 text-[#58595B]">
+          Digital printing, signage, hingga kebutuhan event dalam satu partner produksi yang siap menyesuaikan ukuran,
+          bahan, dan finishing sesuai kebutuhan brand Anda.
+        </p>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Digital Printing",
+              desc: "Sticker label, brosur, flyer, dan poster dengan warna konsisten.",
+            },
+            {
+              title: "Signage & Outdoor",
+              desc: "Spanduk, banner roll-up, neon box, dan rambu arah.",
+            },
+            {
+              title: "Event & Branding",
+              desc: "Backdrop panggung, booth, photobooth, dan display promosi.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-2xl border border-[#231F20]/10 bg-white p-5 shadow-sm">
+              <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
+              <p className="mt-2 text-sm text-[#58595B]">{item.desc}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="portofolio" className="bg-[#F4F4F4]">
         <div className="mx-auto w-full max-w-6xl px-5 py-16">
           <h2 className="text-2xl font-semibold text-[#231F20]">Portofolio</h2>
-          <p className="mt-3 text-[#58595B]">Contoh hasil kerja untuk berbagai kebutuhan bisnis.</p>
+          <p className="mt-3 text-[#58595B]">
+            Contoh hasil kerja untuk berbagai kebutuhan bisnis, mulai dari UMKM hingga korporat lokal.
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Branding Retail",
+                desc: "Sticker label produk, display rak, dan wobblers promo.",
+              },
+              {
+                title: "Hospitality & Travel",
+                desc: "Signage hotel, menu board, dan signage area publik.",
+              },
+              {
+                title: "Event Lokal",
+                desc: "Backdrop sponsor, spanduk panggung, dan ID card panitia.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-[#231F20]/10 bg-white p-5 shadow-sm">
+                <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
+                <p className="mt-2 text-sm text-[#58595B]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section id="proses" className="mx-auto w-full max-w-6xl px-5 py-16">
         <h2 className="text-2xl font-semibold text-[#231F20]">Proses Kerja</h2>
-        <p className="mt-3 text-[#58595B]">Konsultasi, cek file, proof, produksi, QC, dan pengiriman.</p>
+        <p className="mt-3 text-[#58595B]">
+          Alur kerja jelas agar produksi aman: konsultasi kebutuhan, cek file, proof, produksi, QC, hingga pengiriman.
+        </p>
+        <ol className="mt-8 grid gap-4 md:grid-cols-4">
+          {[
+            {
+              title: "1. Konsultasi",
+              desc: "Diskusi kebutuhan, ukuran, jumlah, dan deadline.",
+            },
+            {
+              title: "2. Cek & Proof",
+              desc: "Cek file desain dan kirim proof sebelum produksi.",
+            },
+            {
+              title: "3. Produksi",
+              desc: "Cetak dan finishing sesuai spesifikasi yang disepakati.",
+            },
+            {
+              title: "4. QC & Kirim",
+              desc: "Quality control, packing aman, lalu pengiriman.",
+            },
+          ].map((step) => (
+            <li key={step.title} className="list-none rounded-2xl border border-[#231F20]/10 bg-white p-5 shadow-sm">
+              <h3 className="text-base font-semibold text-[#231F20]">{step.title}</h3>
+              <p className="mt-2 text-sm text-[#58595B]">{step.desc}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section id="faq" className="bg-[#F4F4F4]">
