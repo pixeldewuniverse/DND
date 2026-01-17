@@ -161,6 +161,8 @@
             width: 110px;
             height: auto;
             display: block;
+            max-height: 52px;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -190,6 +192,63 @@
             border: 1px solid var(--dark);
             border-radius: 10px;
             padding: 8px 12px;
+        }
+
+        .mobile-only {
+            display: inline-flex;
+        }
+
+        .desktop-only {
+            display: none;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            right: 4%;
+            left: 4%;
+            background-color: var(--light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            transform: translateY(-12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition), transform var(--transition);
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+            color: var(--dark);
+        }
+
+        .mobile-menu a {
+            font-weight: 600;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 31, 32, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            z-index: 997;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* B. Hero Section */
@@ -582,6 +641,14 @@
             .mobile-toggle {
                 display: inline-flex;
             }
+
+            .mobile-only {
+                display: inline-flex;
+            }
+
+            .desktop-only {
+                display: none;
+            }
         }
 
         @media (max-width: 600px) {
@@ -597,6 +664,12 @@
         @media (min-width: 768px) {
             .logo-img {
                 width: 140px;
+                max-height: 60px;
+            }
+
+            .mobile-menu,
+            .mobile-overlay {
+                display: none;
             }
         }
 
@@ -607,6 +680,15 @@
 
             .logo-img {
                 width: 170px;
+                max-height: 68px;
+            }
+
+            .desktop-only {
+                display: inline-flex;
+            }
+
+            .mobile-only {
+                display: none;
             }
         }
     </style>
@@ -616,7 +698,7 @@
     <header class="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <img class="logo-img" src="dnd logo-01.png" alt="DND Digital Printing & Advertising logo">
+                <img class="logo-img" src="logo/dnd-logo-01.png" alt="DND Digital Printing & Advertising logo">
             </a>
             <nav>
                 <ul class="nav-links">
@@ -628,9 +710,21 @@
                 </ul>
             </nav>
             <div class="nav-cta">
-                <a class="btn btn-primary" href="https://wa.me/628000000000" target="_blank" rel="noopener">Chat WhatsApp</a>
+                <a class="btn btn-primary desktop-only" href="https://wa.me/628000000000" target="_blank" rel="noopener">Chat WhatsApp</a>
             </div>
-            <button class="mobile-toggle" type="button">Menu</button>
+            <button class="mobile-toggle mobile-only" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        </div>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="paper-fold"></div>
+            <ul>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#portofolio">Portofolio</a></li>
+                <li><a href="#proses">Proses</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+                <li><a href="https://wa.me/628000000000" target="_blank" rel="noopener">Chat WhatsApp</a></li>
+            </ul>
         </div>
     </header>
 
@@ -998,6 +1092,9 @@
         const modalDesc = document.getElementById("modalDesc");
         const modalResult = document.getElementById("modalResult");
         const closeModal = document.querySelector(".close-modal");
+        const mobileToggle = document.querySelector(".mobile-toggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileOverlay = document.getElementById("mobileOverlay");
 
         document.querySelectorAll(".portfolio-item").forEach((item) => {
             item.addEventListener("click", () => {
@@ -1014,6 +1111,33 @@
             if (event.target === modal) {
                 modal.close();
             }
+        });
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.remove("active");
+            mobileOverlay.classList.remove("active");
+            mobileToggle.setAttribute("aria-expanded", "false");
+        };
+
+        const openMobileMenu = () => {
+            mobileMenu.classList.add("active");
+            mobileOverlay.classList.add("active");
+            mobileToggle.setAttribute("aria-expanded", "true");
+        };
+
+        mobileToggle.addEventListener("click", () => {
+            const isOpen = mobileMenu.classList.contains("active");
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        mobileOverlay.addEventListener("click", closeMobileMenu);
+
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMobileMenu);
         });
     </script>
 </body>
