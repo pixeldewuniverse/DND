@@ -1,5 +1,6 @@
-import MobileStickyCTA from "/components/MobileStickyCTA";
-import QuoteForm from "/components/QuoteForm";
+import Navbar from "@/components/Navbar";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
+import QuoteForm from "@/components/QuoteForm";
 
 export default function Home() {
   return (
@@ -86,8 +87,10 @@ export default function Home() {
           <p className="mt-3 text-[#58595B]">Pertanyaan umum seputar proses cetak dan deadline.</p>
         </div>
       </section>
+       <section id="kontak" className="mx-auto max-w-6xl px-4 py-16">
+        <QuoteForm />
+      </section>
 
-      <QuoteForm />
       <MobileStickyCTA />
     </main>
   );
