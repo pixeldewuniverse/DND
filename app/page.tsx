@@ -15,7 +15,7 @@ export default function Home() {
             <a href="#kontak" className="hover:text-[#231F20]">Kontak</a>
           </nav>
           <a
-            href="https://wa.me/62812XXXXXXX"
+            href="https://wa.me/6287862691363"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden rounded-full bg-[#231F20] px-5 py-2 text-sm font-semibold text-white md:inline-flex"
@@ -37,7 +37,7 @@ export default function Home() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="https://wa.me/62812XXXXXXX"
+                href="https://wa.me/6287862691363"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-[#231F20] px-5 py-3 text-sm font-semibold text-white"
