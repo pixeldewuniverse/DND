@@ -1,7 +1,7 @@
 import MobileStickyCTA from "../components/MobileStickyCTA";
 import QuoteForm from "../components/QuoteForm";
 
-export default function Home() {
+export default function Page() {
   return (
     <main className="bg-white">
       <header className="sticky top-0 z-40 border-b border-[#231F20]/10 bg-white/90 backdrop-blur">
