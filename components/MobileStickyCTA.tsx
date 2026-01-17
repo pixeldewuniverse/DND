@@ -23,7 +23,7 @@ export default function MobileStickyCTA() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[999] ...">
       <div className="bg-white/95 backdrop-blur border-t border-[#231F20]/10 px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
         <div className="flex items-center gap-3">
           <a
