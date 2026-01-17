@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-const BUSINESS_NUMBER = "6287862691363";
+const BUSINESS_NUMBER = "087862691363";
 
 const buildWhatsAppLink = (message: string) => {
   const encoded = encodeURIComponent(message);
