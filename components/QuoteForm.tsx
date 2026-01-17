@@ -1,13 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-const BUSINESS_NUMBER = "6287862691363";
-
-const buildWhatsAppLink = (message: string) => {
-  const encoded = encodeURIComponent(message);
-  return `https://wa.me/${BUSINESS_NUMBER}?text=${encoded}`;
-};
+import PaperFold from "./PaperFold";
 
 const normalizeWhatsApp = (value: string) => {
   const trimmed = value.replace(/\s+/g, "");
@@ -49,11 +44,6 @@ export default function QuoteForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
-  const waTemplate = useMemo(() => {
-    const message = `Halo DND, saya ${formData.name}. Saya mau cetak ${formData.product}, qty ${formData.qty}, deadline ${formData.deadline}. Catatan: ${formData.notes || "-"}. Link desain: ${formData.fileLink || "-"}.`;
-    return buildWhatsAppLink(message);
-  }, [formData]);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -88,7 +78,8 @@ export default function QuoteForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Gagal mengirim data. Silakan coba lagi.");
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.message || "Gagal mengirim data. Silakan coba lagi.");
       }
 
       setStatus("success");
@@ -121,8 +112,10 @@ export default function QuoteForm() {
 
           <form
             onSubmit={handleSubmit}
-            className="rounded-3xl border border-[#231F20]/10 bg-white p-6 shadow-sm"
+            className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:p-8"
           >
+            <PaperFold />
+            <div className="mb-6 h-px w-full bg-black/10" />
             <div className="grid gap-4">
               <div>
                 <label className="text-sm font-medium text-[#231F20]">Nama</label>
@@ -131,7 +124,7 @@ export default function QuoteForm() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="Nama lengkap"
                 />
               </div>
@@ -142,7 +135,7 @@ export default function QuoteForm() {
                   value={formData.whatsapp}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="08xxxxxxxxxx"
                 />
               </div>
@@ -153,7 +146,7 @@ export default function QuoteForm() {
                   value={formData.product}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                 >
                   <option value="">Pilih produk</option>
                   <option>Sticker</option>
@@ -173,7 +166,7 @@ export default function QuoteForm() {
                     value={formData.qty}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                    className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                     placeholder="Contoh: 500"
                   />
                 </div>
@@ -184,7 +177,7 @@ export default function QuoteForm() {
                     value={formData.deadline}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                    className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                     placeholder="Misal: 24 Okt 2026"
                   />
                 </div>
@@ -196,7 +189,7 @@ export default function QuoteForm() {
                   value={formData.notes}
                   onChange={handleChange}
                   rows={3}
-                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="Finishing, material, atau detail lainnya"
                 />
               </div>
@@ -206,31 +199,27 @@ export default function QuoteForm() {
                   name="fileLink"
                   value={formData.fileLink}
                   onChange={handleChange}
-                  className="mt-2 w-full rounded-xl border border-[#231F20]/15 px-4 py-3 text-sm focus:border-[#231F20] focus:outline-none"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="Link Google Drive/Canva"
                 />
               </div>
             </div>
 
-            {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+            {error && (
+              <div className="mt-4 rounded-2xl border border-black/10 bg-black/5 px-4 py-3 text-sm text-[#231F20]">
+                {error}
+              </div>
+            )}
 
             {status === "success" ? (
-              <div className="mt-5 rounded-2xl border border-[#231F20]/10 bg-[#F4F4F4] p-4 text-sm text-[#231F20]">
-                <p>Terima kasih! Data sudah terkirim.</p>
-                <a
-                  href={waTemplate}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#231F20] px-4 py-3 text-sm font-semibold text-white"
-                >
-                  Kirim Detail ke WhatsApp
-                </a>
+              <div className="mt-5 rounded-2xl border border-black/10 bg-black/5 p-4 text-sm text-[#231F20]">
+                <p>Terima kasih! Data sudah terkirim dan tercatat.</p>
               </div>
             ) : (
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-5 w-full rounded-full bg-[#231F20] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#2f2b2c] disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-5 w-full rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "loading" ? "Mengirim..." : "Kirim Permintaan"}
               </button>
