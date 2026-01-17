@@ -1,5 +1,5 @@
-import MobileStickyCTA from "@/components/MobileStickyCTA";
-import QuoteForm from "@/components/QuoteForm";
+import MobileStickyCTA from "./components/MobileStickyCTA.tsx";
+import QuoteForm from "./components/QuoteForm.tsx";
 
 export default function Home() {
   return (
