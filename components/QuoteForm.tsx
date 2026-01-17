@@ -1,13 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
-const BUSINESS_NUMBER = "6287862691363";
-
-const buildWhatsAppLink = (message: string) => {
-  const encoded = encodeURIComponent(message);
-  return `https://wa.me/${BUSINESS_NUMBER}?text=${encoded}`;
-};
+import { useState } from "react";
 
 const normalizeWhatsApp = (value: string) => {
   const trimmed = value.replace(/\s+/g, "");
@@ -49,11 +42,6 @@ export default function QuoteForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
-  const waTemplate = useMemo(() => {
-    const message = `Halo DND, saya ${formData.name}. Saya mau cetak ${formData.product}, qty ${formData.qty}, deadline ${formData.deadline}. Catatan: ${formData.notes || "-"}. Link desain: ${formData.fileLink || "-"}.`;
-    return buildWhatsAppLink(message);
-  }, [formData]);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -88,7 +76,8 @@ export default function QuoteForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Gagal mengirim data. Silakan coba lagi.");
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.message || "Gagal mengirim data. Silakan coba lagi.");
       }
 
       setStatus("success");
@@ -216,15 +205,7 @@ export default function QuoteForm() {
 
             {status === "success" ? (
               <div className="mt-5 rounded-2xl border border-[#231F20]/10 bg-[#F4F4F4] p-4 text-sm text-[#231F20]">
-                <p>Terima kasih! Data sudah terkirim.</p>
-                <a
-                  href={waTemplate}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-[#231F20] px-4 py-3 text-sm font-semibold text-white"
-                >
-                  Kirim Detail ke WhatsApp
-                </a>
+                <p>Terima kasih! Data sudah terkirim dan tercatat.</p>
               </div>
             ) : (
               <button
