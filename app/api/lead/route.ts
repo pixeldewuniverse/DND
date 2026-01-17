@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { google } from "googleapis.com";
+import { google } from "googleapis";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -18,7 +18,8 @@ const isRateLimited = (ip: string) => {
 };
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 
   if (isRateLimited(ip)) {
     return NextResponse.json({ message: "Terlalu banyak permintaan." }, { status: 429 });
@@ -47,34 +48,29 @@ export async function POST(request: NextRequest) {
     const auth = new google.auth.JWT({
       email: serviceEmail,
       key: privateKey,
-      scopes: ["https://accounts.google.com/o/oauth2/auth"],
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
+
+    // (optional) memastikan token bisa didapat
+    await auth.authorize();
 
     const sheets = google.sheets({ version: "v4", auth });
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetsId,
-      range: "Leads!A1",
+      range: "Leads!A:I", // pastikan sheet tab bernama "Leads"
       valueInputOption: "USER_ENTERED",
+      insertDataOption: "INSERT_ROWS",
       requestBody: {
         values: [
-          [
-            new Date().toISOString(),
-            name,
-            whatsapp,
-            product,
-            qty,
-            deadline,
-            notes,
-            fileLink,
-            ip,
-          ],
+          [new Date().toISOString(), name, whatsapp, product, qty, deadline, notes, fileLink, ip],
         ],
       },
     });
 
     return NextResponse.json({ message: "Sukses" }, { status: 200 });
   } catch (error) {
+    console.error("Sheets append error:", error);
     return NextResponse.json({ message: "Gagal menyimpan data." }, { status: 500 });
   }
 }
