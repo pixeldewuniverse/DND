@@ -23,21 +23,21 @@ export default function MobileStickyCTA() {
   };
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[999] ...">
-      <div className="bg-white/95 backdrop-blur border-t border-[#231F20]/10 px-4 py-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+    <div className="fixed bottom-0 left-0 right-0 z-[999] md:hidden">
+      <div className="border-t border-black/10 bg-white/95 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 backdrop-blur">
         <div className="flex items-center gap-3">
           <a
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-full bg-[#231F20] px-4 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-[#2f2b2c]"
+            className="flex-1 rounded-full bg-[#231F20] px-6 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           >
             Chat WhatsApp
           </a>
           <button
             type="button"
             onClick={handleScroll}
-            className="flex-1 rounded-full border border-[#231F20] px-4 py-3 text-center text-sm font-semibold text-[#231F20] transition hover:bg-[#231F20] hover:text-white"
+            className="flex-1 rounded-full border border-black/10 px-6 py-3 text-center text-sm font-semibold text-[#231F20] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
           >
             Minta Penawaran
           </button>
