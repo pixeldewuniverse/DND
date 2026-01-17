@@ -36,11 +36,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Data belum lengkap." }, { status: 400 });
   }
 
-  const sheetsId = process.env.GOOGLE_SHEETS_ID;
   const serviceEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
-  if (!sheetsId || !serviceEmail || !privateKey) {
+  if (!process.env.GOOGLE_SHEETS_ID || !serviceEmail || !privateKey) {
     return NextResponse.json({ message: "Konfigurasi server belum lengkap." }, { status: 500 });
   }
 
@@ -57,7 +56,7 @@ export async function POST(request: NextRequest) {
     const sheets = google.sheets({ version: "v4", auth });
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetsId,
+      spreadsheetId: process.env.GOOGLE_SHEETS_ID,
       range: "Leads!A:I", // pastikan sheet tab bernama "Leads"
       valueInputOption: "USER_ENTERED",
       insertDataOption: "INSERT_ROWS",
@@ -74,3 +73,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Gagal menyimpan data." }, { status: 500 });
   }
 }
+
