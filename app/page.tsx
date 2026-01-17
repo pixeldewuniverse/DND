@@ -1,5 +1,5 @@
-import MobileStickyCTA from "../components/MobileStickyCTA";
-import QuoteForm from "../components/QuoteForm";
+import MobileStickyCTA from "/components/MobileStickyCTA";
+import QuoteForm from "/components/QuoteForm";
 
 export default function Home() {
   return (
