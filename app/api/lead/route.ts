@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     const auth = new google.auth.JWT({
       email: serviceEmail,
       key: privateKey,
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+      scopes: ["https://accounts.google.com/o/oauth2/auth"],
     });
 
     const sheets = google.sheets({ version: "v4", auth });
