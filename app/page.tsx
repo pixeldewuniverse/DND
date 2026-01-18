@@ -8,7 +8,14 @@ export default function Page() {
     <main className="bg-white pb-24 md:pb-0">
       <header className="sticky top-0 z-40 border-b border-black/10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-          <div className="text-lg font-semibold tracking-wide">DND Digital Printing & Advertising</div>
+          <div className="flex items-center gap-3">
+           <img
+            src="/dnd-logo-01.png"
+            alt="DND Digital Printing & Advertising"
+            className="h-8 w-auto md:h-10 drop-shadow-sm"
+            />
+           </div>
+
           <nav className="hidden items-center gap-6 text-sm text-[#58595B] md:flex">
             <a href="#layanan" className="hover:text-[#231F20]">Layanan</a>
             <a href="#portofolio" className="hover:text-[#231F20]">Portofolio</a>
