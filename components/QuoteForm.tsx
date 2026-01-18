@@ -112,7 +112,7 @@ export default function QuoteForm() {
 
           <form
             onSubmit={handleSubmit}
-            className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:p-8"
+            className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md md:p-8"
           >
             <PaperFold />
             <div className="mb-6 h-px w-full bg-black/10" />
@@ -124,7 +124,7 @@ export default function QuoteForm() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="Nama lengkap"
                 />
               </div>
@@ -135,7 +135,7 @@ export default function QuoteForm() {
                   value={formData.whatsapp}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="08xxxxxxxxxx"
                 />
               </div>
@@ -146,7 +146,7 @@ export default function QuoteForm() {
                   value={formData.product}
                   onChange={handleChange}
                   required
-                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                 >
                   <option value="">Pilih produk</option>
                   <option>Sticker</option>
@@ -166,7 +166,7 @@ export default function QuoteForm() {
                     value={formData.qty}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                    className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                     placeholder="Contoh: 500"
                   />
                 </div>
@@ -177,7 +177,7 @@ export default function QuoteForm() {
                     value={formData.deadline}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                    className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                     placeholder="Misal: 24 Okt 2026"
                   />
                 </div>
@@ -189,7 +189,7 @@ export default function QuoteForm() {
                   value={formData.notes}
                   onChange={handleChange}
                   rows={3}
-                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="Finishing, material, atau detail lainnya"
                 />
               </div>
@@ -199,7 +199,7 @@ export default function QuoteForm() {
                   name="fileLink"
                   value={formData.fileLink}
                   onChange={handleChange}
-                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-black/10"
+                  className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-[#231F20] outline-none focus:ring-2 focus:ring-black/10"
                   placeholder="Link Google Drive/Canva"
                 />
               </div>
@@ -219,7 +219,7 @@ export default function QuoteForm() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="mt-5 w-full rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-5 w-full rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "loading" ? "Mengirim..." : "Kirim Permintaan"}
               </button>
