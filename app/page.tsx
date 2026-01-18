@@ -1,4 +1,6 @@
+import FAQAccordion from "../components/FAQAccordion";
 import MobileStickyCTA from "../components/MobileStickyCTA";
+import Navbar from "../components/Navbar";
 import PaperFold from "../components/PaperFold";
 import FAQAccordion from "../components/FAQAccordion";
 import QuoteForm from "../components/QuoteForm";
@@ -6,33 +8,7 @@ import QuoteForm from "../components/QuoteForm";
 export default function Page() {
   return (
     <main className="bg-white pb-24 md:pb-0">
-      <header className="sticky top-0 z-40 border-b border-black/10 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-          <div className="flex items-center gap-3">
-           <img
-            src="/dnd-logo-01.png"
-            alt="DND Digital Printing & Advertising"
-            className="h-8 w-auto md:h-10 drop-shadow-sm"
-            />
-           </div>
-
-          <nav className="hidden items-center gap-6 text-sm text-[#58595B] md:flex">
-            <a href="#layanan" className="hover:text-[#231F20]">Layanan</a>
-            <a href="#portofolio" className="hover:text-[#231F20]">Portofolio</a>
-            <a href="#proses" className="hover:text-[#231F20]">Proses</a>
-            <a href="#faq" className="hover:text-[#231F20]">FAQ</a>
-            <a href="#kontak" className="hover:text-[#231F20]">Kontak</a>
-          </nav>
-          <a
-            href="https://wa.me/6287862691363"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 hover:shadow-md md:inline-flex"
-          >
-            Chat WhatsApp
-          </a>
-        </div>
-      </header>
+      <Navbar />
 
       <section className="border-b border-black/10 bg-[#F4F4F4]">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.2fr_0.8fr] md:items-center md:py-16">
