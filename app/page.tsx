@@ -9,7 +9,7 @@ export default function Page() {
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
           <div className="flex items-center gap-3">
            <img
-            src="/dnd-logo-01.png"
+            src="dnd-logo-01.png"
             alt="DND Digital Printing & Advertising"
             className="h-8 w-auto md:h-10 drop-shadow-sm"
             />
