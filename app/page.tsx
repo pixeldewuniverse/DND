@@ -2,6 +2,7 @@ import FAQAccordion from "../components/FAQAccordion";
 import MobileStickyCTA from "../components/MobileStickyCTA";
 import Navbar from "../components/Navbar";
 import PaperFold from "../components/PaperFold";
+import PortfolioGallery from "../components/PortfolioGallery";
 import QuoteForm from "../components/QuoteForm";
 
 export default function Page() {
@@ -90,68 +91,7 @@ export default function Page() {
           <p className="mt-3 text-[#58595B]">
             Contoh hasil kerja untuk berbagai kebutuhan bisnis, mulai dari UMKM hingga korporat lokal.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2 text-sm text-[#58595B]">
-            {["Semua", "Sticker", "Banner", "Signage", "Event", "Corporate"].map((label) => (
-              <span
-                key={label}
-                className="rounded-full border border-[#231F20]/10 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#231F20]"
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {[
-              {
-                src: "https://picsum.photos/seed/dnd-sticker/1200/900",
-                title: "Sticker Label",
-                tag: "Sticker",
-              },
-              {
-                src: "https://picsum.photos/seed/dnd-banner/1200/900",
-                title: "Banner Premium",
-                tag: "Banner",
-              },
-              {
-                src: "https://picsum.photos/seed/dnd-signage/1200/900",
-                title: "Signage Hotel",
-                tag: "Signage",
-              },
-              {
-                src: "https://picsum.photos/seed/dnd-event/1200/900",
-                title: "Backdrop Event",
-                tag: "Event",
-              },
-              {
-                src: "https://picsum.photos/seed/dnd-corporate/1200/900",
-                title: "Corporate Kit",
-                tag: "Corporate",
-              },
-              {
-                src: "https://picsum.photos/seed/dnd-retail/1200/900",
-                title: "Branding Retail",
-                tag: "Sticker",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="group relative rounded-3xl border border-black/10 bg-white shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
-              >
-                <div className="aspect-[4/3] overflow-hidden rounded-[1.4rem] bg-black/5">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-5">
-                  <div className="text-xs font-semibold uppercase tracking-[0.3em] text-[#58595B]">{item.tag}</div>
-                  <h3 className="mt-2 text-base font-semibold text-[#231F20]">{item.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
+          <PortfolioGallery />
         </div>
       </section>
 
