@@ -19,7 +19,7 @@ export default function Page() {
             href="https://wa.me/6287862691363"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-[#231F20] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:inline-flex"
+            className="hidden rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 hover:shadow-md md:inline-flex"
           >
             Chat WhatsApp
           </a>
@@ -43,19 +43,19 @@ export default function Page() {
                 href="https://wa.me/6287862691363"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 hover:shadow-md"
               >
                 Chat WhatsApp
               </a>
               <a
                 href="#portofolio"
-                className="rounded-full border border-black/10 px-6 py-3 text-sm font-semibold text-[#231F20] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-full border border-[#231F20] px-6 py-3 text-sm font-semibold text-[#231F20] transition hover:bg-black/5"
               >
                 Lihat Portofolio
               </a>
             </div>
           </div>
-          <div className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+          <div className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
             <PaperFold size="md" />
             <div className="mb-4 h-px w-full bg-black/10" />
             <h3 className="text-lg font-semibold text-[#231F20]">Partner Produksi yang Terukur</h3>
@@ -91,7 +91,7 @@ export default function Page() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="relative rounded-3xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
             >
               <div className="mb-3 h-px w-full bg-black/10" />
               <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
@@ -121,13 +121,13 @@ export default function Page() {
                 title: "Event Lokal",
                 desc: "Backdrop sponsor, spanduk panggung, dan ID card panitia.",
               },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <div className="mb-3 h-px w-full bg-black/10" />
-                <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="relative rounded-3xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
+            >
+              <div className="mb-3 h-px w-full bg-black/10" />
+              <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
                 <p className="mt-2 text-sm text-[#58595B]">{item.desc}</p>
               </div>
             ))}
@@ -161,7 +161,7 @@ export default function Page() {
           ].map((step) => (
             <li
               key={step.title}
-              className="list-none rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="list-none relative rounded-3xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
             >
               <div className="mb-3 h-px w-full bg-black/10" />
               <h3 className="text-base font-semibold text-[#231F20]">{step.title}</h3>
