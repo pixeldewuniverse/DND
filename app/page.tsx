@@ -263,14 +263,75 @@ export default function Page() {
         </div>
       </section>
 
-      <footer className="border-t border-black/10 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-5 py-10 text-sm text-[#58595B]">
-          <div className="space-y-2">
-            <p className="text-base font-semibold text-[#231F20]">Edy Siswanto · Operations Manager</p>
-            <p>WhatsApp: 087-862-691-363</p>
-            <p>Email: edysiswanto61@gmail.com</p>
-            <p>Alamat: Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT</p>
-            <p>Website: dndadvertising.com</p>
+      <footer className="bg-[#231F20] text-white">
+        <div className="mx-auto w-full max-w-6xl px-5 py-12">
+          <div className="grid gap-10 md:grid-cols-3">
+            <div className="space-y-4">
+              <div className="text-lg font-semibold tracking-wide">DND Digital Printing & Advertising</div>
+              <p className="text-sm text-white/70">
+                Partner cetak premium dengan hasil presisi, warna konsisten, dan pelayanan cepat untuk kebutuhan brand.
+              </p>
+              <a
+                href="https://wa.me/6287862691363"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#231F20] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
+              >
+                Chat WhatsApp
+              </a>
+              <p className="text-sm text-white/70">Senin - Sabtu · 08:00 - 18:00 WITA</p>
+            </div>
+
+            <div className="space-y-3 text-sm text-white/70">
+              <div className="text-base font-semibold text-white">Kontak</div>
+              <p className="text-white">Edy Siswanto · Operations Manager</p>
+              <a className="block transition hover:text-white" href="mailto:edysiswanto61@gmail.com">
+                edysiswanto61@gmail.com
+              </a>
+              <a
+                className="block transition hover:text-white"
+                href="https://wa.me/6287862691363"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp: 087-862-691-363
+              </a>
+              <a
+                className="block transition hover:text-white"
+                href="https://dndadvertisingbajo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                dndadvertisingbajo.com
+              </a>
+            </div>
+
+            <div className="space-y-3 text-sm text-white/70">
+              <div className="text-base font-semibold text-white">Alamat</div>
+              <p>
+                Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT
+              </p>
+              <a
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white"
+                href="https://dndadvertisingbajo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Kunjungi website →
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-white/10">
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+            <p>© {new Date().getFullYear()} DND Digital Printing & Advertising. All rights reserved.</p>
+            <div className="flex flex-wrap gap-4">
+              <a className="transition hover:text-white" href="#layanan">Layanan</a>
+              <a className="transition hover:text-white" href="#portofolio">Portofolio</a>
+              <a className="transition hover:text-white" href="#proses">Proses</a>
+              <a className="transition hover:text-white" href="#faq">FAQ</a>
+              <a className="transition hover:text-white" href="#kontak">Kontak</a>
+            </div>
           </div>
         </div>
       </footer>
