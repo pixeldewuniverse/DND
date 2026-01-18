@@ -2,7 +2,6 @@ import FAQAccordion from "../components/FAQAccordion";
 import MobileStickyCTA from "../components/MobileStickyCTA";
 import Navbar from "../components/Navbar";
 import PaperFold from "../components/PaperFold";
-import FAQAccordion from "../components/FAQAccordion";
 import QuoteForm from "../components/QuoteForm";
 
 export default function Page() {
