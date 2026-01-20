@@ -1,30 +1,14 @@
+import FAQAccordion from "../components/FAQAccordion";
 import MobileStickyCTA from "../components/MobileStickyCTA";
+import Navbar from "../components/Navbar";
 import PaperFold from "../components/PaperFold";
+import PortfolioGallery from "../components/PortfolioGallery";
 import QuoteForm from "../components/QuoteForm";
 
 export default function Page() {
   return (
     <main className="bg-white pb-24 md:pb-0">
-      <header className="sticky top-0 z-40 border-b border-black/10 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-          <div className="text-lg font-semibold tracking-wide">DND Digital Printing & Advertising</div>
-          <nav className="hidden items-center gap-6 text-sm text-[#58595B] md:flex">
-            <a href="#layanan" className="hover:text-[#231F20]">Layanan</a>
-            <a href="#portofolio" className="hover:text-[#231F20]">Portofolio</a>
-            <a href="#proses" className="hover:text-[#231F20]">Proses</a>
-            <a href="#faq" className="hover:text-[#231F20]">FAQ</a>
-            <a href="#kontak" className="hover:text-[#231F20]">Kontak</a>
-          </nav>
-          <a
-            href="https://wa.me/6287862691363"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden rounded-full bg-[#231F20] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:inline-flex"
-          >
-            Chat WhatsApp
-          </a>
-        </div>
-      </header>
+      <Navbar />
 
       <section className="border-b border-black/10 bg-[#F4F4F4]">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.2fr_0.8fr] md:items-center md:py-16">
@@ -43,19 +27,19 @@ export default function Page() {
                 href="https://wa.me/6287862691363"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-full bg-[#231F20] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 hover:shadow-md"
               >
                 Chat WhatsApp
               </a>
               <a
                 href="#portofolio"
-                className="rounded-full border border-black/10 px-6 py-3 text-sm font-semibold text-[#231F20] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-full border border-[#231F20] px-6 py-3 text-sm font-semibold text-[#231F20] transition hover:bg-black/5"
               >
                 Lihat Portofolio
               </a>
             </div>
           </div>
-          <div className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+          <div className="relative rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md">
             <PaperFold size="md" />
             <div className="mb-4 h-px w-full bg-black/10" />
             <h3 className="text-lg font-semibold text-[#231F20]">Partner Produksi yang Terukur</h3>
@@ -91,7 +75,7 @@ export default function Page() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="relative rounded-3xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
             >
               <div className="mb-3 h-px w-full bg-black/10" />
               <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
@@ -107,31 +91,7 @@ export default function Page() {
           <p className="mt-3 text-[#58595B]">
             Contoh hasil kerja untuk berbagai kebutuhan bisnis, mulai dari UMKM hingga korporat lokal.
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "Branding Retail",
-                desc: "Sticker label produk, display rak, dan wobblers promo.",
-              },
-              {
-                title: "Hospitality & Travel",
-                desc: "Signage hotel, menu board, dan signage area publik.",
-              },
-              {
-                title: "Event Lokal",
-                desc: "Backdrop sponsor, spanduk panggung, dan ID card panitia.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <div className="mb-3 h-px w-full bg-black/10" />
-                <h3 className="text-base font-semibold text-[#231F20]">{item.title}</h3>
-                <p className="mt-2 text-sm text-[#58595B]">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+          <PortfolioGallery />
         </div>
       </section>
 
@@ -161,7 +121,7 @@ export default function Page() {
           ].map((step) => (
             <li
               key={step.title}
-              className="list-none rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="list-none relative rounded-3xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
             >
               <div className="mb-3 h-px w-full bg-black/10" />
               <h3 className="text-base font-semibold text-[#231F20]">{step.title}</h3>
@@ -175,6 +135,36 @@ export default function Page() {
         <div className="mx-auto w-full max-w-6xl px-5 py-14 md:py-16">
           <h2 className="text-2xl font-semibold text-[#231F20]">FAQ</h2>
           <p className="mt-3 text-[#58595B]">Pertanyaan umum seputar proses cetak dan deadline.</p>
+          <div className="mt-8">
+            <FAQAccordion
+              items={[
+                {
+                  q: "Minimal order?",
+                  a: "Tidak ada minimal order yang kaku. Kami bisa menyesuaikan mulai dari kebutuhan kecil hingga volume besar, sesuai spesifikasi bahan dan finishing.",
+                },
+                {
+                  q: "Estimasi pengerjaan?",
+                  a: "Rata-rata 2–5 hari kerja setelah proof disetujui. Durasi bisa lebih cepat untuk kebutuhan express, tergantung jenis produk dan antrean.",
+                },
+                {
+                  q: "Format file yang aman?",
+                  a: "PDF/X, AI, atau PSD dengan teks sudah di-outline, ukuran sesuai final, dan resolusi minimal 300 DPI untuk hasil tajam.",
+                },
+                {
+                  q: "Bisa bantu desain?",
+                  a: "Bisa. Tim kami dapat membantu layout atau finalisasi desain agar siap produksi dengan warna yang aman untuk cetak.",
+                },
+                {
+                  q: "Pengiriman luar kota?",
+                  a: "Kami melayani pengiriman luar kota via ekspedisi pilihan, dengan packing aman dan update resi setelah pengiriman.",
+                },
+                {
+                  q: "Garansi jika cacat/misprint?",
+                  a: "Ada. Jika ditemukan cacat produksi atau misprint, kami akan evaluasi dan lakukan cetak ulang sesuai ketentuan QC.",
+                },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
@@ -188,14 +178,75 @@ export default function Page() {
         </div>
       </section>
 
-      <footer className="border-t border-black/10 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-5 py-10 text-sm text-[#58595B]">
-          <div className="space-y-2">
-            <p className="text-base font-semibold text-[#231F20]">Edy Siswanto · Operations Manager</p>
-            <p>WhatsApp: 087-862-691-363</p>
-            <p>Email: edysiswanto61@gmail.com</p>
-            <p>Alamat: Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT</p>
-            <p>Website: dndadvertising.com</p>
+      <footer className="bg-[#231F20] text-white">
+        <div className="mx-auto w-full max-w-6xl px-5 py-12">
+          <div className="grid gap-10 md:grid-cols-3">
+            <div className="space-y-4">
+              <div className="text-lg font-semibold tracking-wide">DND Digital Printing & Advertising</div>
+              <p className="text-sm text-white/70">
+                Partner cetak premium dengan hasil presisi, warna konsisten, dan pelayanan cepat untuk kebutuhan brand.
+              </p>
+              <a
+                href="https://wa.me/6287862691363"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#231F20] shadow-sm transition hover:-translate-y-[1px] hover:shadow-md"
+              >
+                Chat WhatsApp
+              </a>
+              <p className="text-sm text-white/70">Senin - Sabtu · 08:00 - 18:00 WITA</p>
+            </div>
+
+            <div className="space-y-3 text-sm text-white/70">
+              <div className="text-base font-semibold text-white">Kontak</div>
+              <p className="text-white">Edy Siswanto · Operations Manager</p>
+              <a className="block transition hover:text-white" href="mailto:edysiswanto61@gmail.com">
+                edysiswanto61@gmail.com
+              </a>
+              <a
+                className="block transition hover:text-white"
+                href="https://wa.me/6287862691363"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp: 087-862-691-363
+              </a>
+              <a
+                className="block transition hover:text-white"
+                href="https://dndadvertisingbajo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                dndadvertisingbajo.com
+              </a>
+            </div>
+
+            <div className="space-y-3 text-sm text-white/70">
+              <div className="text-base font-semibold text-white">Alamat</div>
+              <p>
+                Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT
+              </p>
+              <a
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white hover:opacity-80"
+                href="https://www.google.com/maps/search/?api=1&query=Bandara+Komodo+Labuan+Bajo"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Lihat di Google Maps →
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-white/10">
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+            <p>© {new Date().getFullYear()} DND Digital Printing & Advertising. All rights reserved.</p>
+            <div className="flex flex-wrap gap-4">
+              <a className="transition hover:text-white" href="#layanan">Layanan</a>
+              <a className="transition hover:text-white" href="#portofolio">Portofolio</a>
+              <a className="transition hover:text-white" href="#proses">Proses</a>
+              <a className="transition hover:text-white" href="#faq">FAQ</a>
+              <a className="transition hover:text-white" href="#kontak">Kontak</a>
+            </div>
           </div>
         </div>
       </footer>
