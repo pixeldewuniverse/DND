@@ -227,12 +227,12 @@ export default function Page() {
                 Jl. Yohanes Sahadun (Depan Bandara Komodo), Kec. Komodo, Kab. Manggarai Barat, NTT
               </p>
               <a
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white"
-                href="https://dndadvertisingbajo.com"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white hover:opacity-80"
+                href="https://www.google.com/maps/search/?api=1&query=Bandara+Komodo+Labuan+Bajo"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
               >
-                Kunjungi website →
+                Lihat di Google Maps →
               </a>
             </div>
           </div>
